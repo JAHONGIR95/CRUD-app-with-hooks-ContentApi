@@ -1,12 +1,22 @@
 import React from 'react'
 
-export default AppReducer = (state, action) => {
+const AppReducer = (state, action) => {
     switch (action.type) {
-        case value:
-            
-            break;
+        case 'remove_user':
+            return {
+                users: state.users.filter( user => {
+                    return user.id !== action.payload
+                })
+            }
+
+        case 'add_user':
+            return {
+                users: [ action.payload, ...state.users ]
+            }
     
         default:
             return state;
     }
 }
+
+export default AppReducer;
