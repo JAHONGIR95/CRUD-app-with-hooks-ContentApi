@@ -1,4 +1,3 @@
-import React from 'react'
 
 const AppReducer = (state, action) => {
     switch (action.type) {
@@ -14,6 +13,19 @@ const AppReducer = (state, action) => {
                 users: [ action.payload, ...state.users ]
             }
     
+        case 'edit_user':
+            const editedUser = action.payload
+            const selectedUser = state.users.map(user => {
+                if(user.id === editedUser.id){
+                    return editedUser
+                }
+                return user
+            })
+
+            return {
+                users: selectedUser
+            }
+
         default:
             return state;
     }

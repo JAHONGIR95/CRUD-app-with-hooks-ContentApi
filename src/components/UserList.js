@@ -10,15 +10,23 @@ export const UserList = () => {
     return (
         <ListGroup className="mt-4">
             {
-                users.map(user => (
-                    <ListGroupItem key={user.id} className="d-flex align-items-center justify-content-between">
-                        <strong>{user.name}</strong>
-                        <div>
-                            <Button onClick={() => history.push(`/edit/${user.id}`)} className="me-2 btn btn-warning">Edit</Button>
-                            <Button onClick={() => removeUser(user.id)} className="btn btn-danger">Delete</Button>
-                        </div>
-                    </ListGroupItem>
-                ))
+                users.length > 0 ? (
+                    <>
+                       {
+                            users.map(user => (
+                                <ListGroupItem key={user.id} className="d-flex align-items-center justify-content-between">
+                                    <strong>{user.name}</strong>
+                                    <div>
+                                        <Button onClick={() => history.push(`/edit/${user.id}`)} className="me-2 btn btn-warning">Edit</Button>
+                                        <Button onClick={() => removeUser(user.id)} className="btn btn-danger">Delete</Button>
+                                    </div>
+                                </ListGroupItem>
+                            ))
+                       }
+                    </>
+                ) : (
+                    <h1 className="text-center">No User</h1>
+                )
             }
         </ListGroup>
     )
